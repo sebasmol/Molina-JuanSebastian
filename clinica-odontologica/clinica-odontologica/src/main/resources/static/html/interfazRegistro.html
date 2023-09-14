@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registro de Odontologo</title>
+    <link rel="stylesheet" type="text/css" href="../css/estilos.css">
+</head>
+<body>
+<h1>Clinica Odontologica</h1>
+
+<form id="registroOdontologoForm" action="http://localhost:8081/odontologos/registrar" method="POST">
+    <label for="matricula">Matricula:</label>
+    <input type="text" id="matricula" name="matricula" required><br>
+
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" name="nombre" required><br>
+
+    <label for="apellido">Apellido:</label>
+    <input type="text" id="apellido" name="apellido" required><br>
+
+    <input type="submit" value="Registrar Odontologo">
+</form>
+
+<form id="registroPacienteForm" action="http://localhost:8081/pacientes/registrar" method="POST">
+    
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" name="nombre" required><br>
+
+    <label for="apellido">Apellido:</label>
+    <input type="text" id="apellido" name="apellido" required><br>
+
+    <label for="dni">Dni:</label>
+    <input type="text" id="dni" name="dni" required><br>
+
+    <label for="fechaIngreso">Fecha Ingreso</label>
+    <input type="datetime" id="fechaIngreso" name="fechaIngreso" required><br>
+
+    <input type="submit" value="Registrar Paciente">
+</form>
+
+
+
+<script>
+   
+    const formulario = document.getElementById("registroOdontologoForm");
+
+    
+    formulario.addEventListener("submit", function (event) {
+        event.preventDefault(); 
+
+        
+        const matricula = document.getElementById("matricula").value;
+        const nombre = document.getElementById("nombre").value;
+        const apellido = document.getElementById("apellido").value;
+
+        
+        const datos = {
+            matricula: matricula,
+            nombre: nombre,
+            apellido: apellido
+        };
+
+        
+        fetch("http://localhost:8081/odontologos/registrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(datos)
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Maneja la respuesta del servidor aquí
+            console.log(data); // Puedes mostrar la respuesta en la consola o actualizar la página, según tus necesidades
+        })
+        .catch(error => {
+            console.error("Error al enviar la solicitud:", error);
+        });
+    });
+
+</script>
+
+
+</body>
+</html>
