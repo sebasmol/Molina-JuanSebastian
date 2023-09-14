@@ -8,9 +8,16 @@ h1 {
     color: #333;
 }
 
+#contenedorForms {
+    display: flex; /* Muestra los formularios en línea */
+    justify-content: center; /* Centra los formularios horizontalmente */
+    align-items: flex-start; /* Alinea los formularios en la parte superior */
+    margin-top: 20px;
+}
+
 form {
     max-width: 400px;
-    margin: 0 auto;
+    margin: 0 25px;
     padding: 60px;
     background-color: #ddd; 
     border-radius: 5px;
@@ -52,7 +59,8 @@ input[type="submit"]:active{
     color: black;
 }
 
-#respuestaServidor {
-    margin-top: 20px;
-    font-weight: bold;
-}
+#registroPacienteForm input:hover{
+    initial-value: "lo siento, no disponible";
+}  
+
+
